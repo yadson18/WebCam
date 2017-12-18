@@ -1,0 +1,51 @@
+@media (max-width: 1000px) {
+	#code-reader {
+		position: absolute;
+		width: 100%;
+		top: 20%;
+	}
+	.vector-left {
+		top: 8%;
+		left: 12.5%;
+		border-left: solid 5px;
+		border-right: solid 5px;
+		border-top: solid 5px;
+	}
+	.vector-right {
+		bottom: 8%;
+		right: 12.5%;
+		border-left: solid 5px;
+		border-right: solid 5px;
+		border-bottom: solid 5px;
+	}
+	span.vector {
+		position: absolute;
+		padding: 5% 37%;
+		border-color: #0f4;
+	}
+}
+@media (min-width: 1001px) {
+	#code-reader {
+		position: absolute;
+		width: 100%;
+		top: 30%;
+	}
+	.vector-left {
+		left: 14%;
+		border-left: solid 3px;
+		border-top: solid 3px;
+		border-bottom: solid 3px;
+	}
+	.vector-right {
+		right: 14%;
+		border-right: solid 3px;
+		border-top: solid 3px;
+		border-bottom: solid 3px;
+	}
+	span.vector {
+		position: absolute;
+		padding: 23% 3%;
+		top: 13.5%;
+		border-color: #0f4;
+	}
+}

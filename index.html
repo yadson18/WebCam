@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Câmera</title>
+		<meta charset="utf-8">
+		<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<style type="text/css">
+		
+		</style>
+	</head>
+	<body>
+		<div id="code-reader">
+			<div class="col-md-4 col-md-offset-4 col-xs-8 col-xs-offset-2">
+				<video class="col-md-12 col-xs-12" autoplay id="video"></video>
+				<span class="vector vector-left"></span>
+				<span class="vector vector-right"></span>
+			</div>
+		</div>
+		<canvas id="canvas" width="200" height="150"></canvas>
+		<script type="text/javascript">
+			var WebCam = function() {
+				var video, localMediaStream, canvas, ctx;
+
+				return {
+					start: function(config) {
+						if (typeof config === 'object') {
+							if (config.video && config.canvas) {
+								video = document.querySelector(config.video);
+							    canvas = document.querySelector(config.canvas);
+							    ctx = canvas.getContext('2d');
+							    localMediaStream = null;
+
+			    				navigator.getUserMedia = navigator.getUserMedia
+								|| navigator.webkitGetUserMedia
+								|| navigator.mozGetUserMedia
+								|| navigator.msGetUserMedia;
+								window.URL = window.URL || window.webkitURL;
+
+								navigator.getUserMedia({
+	    							video : true
+	    						}, function(stream) {
+	        						video.src = window.URL.createObjectURL(stream);
+	        						localMediaStream = stream;
+	        					}, function(error) {
+	        						console.log(error);
+	        					});
+							}
+						}
+					},
+					snapshot: function(button) {
+						if (localMediaStream) {
+							ctx.drawImage(video, 0, 0);
+						}
+					}
+				};
+			}();
+
+			WebCam.start({video: '#video', canvas: '#canvas'});
+			document.querySelector('body').addEventListener('keypress', function(event) {
+				if (event.which === 13) {
+					WebCam.snapshot();
+				}
+			});
+		</script>
+	</body>
+</html>
